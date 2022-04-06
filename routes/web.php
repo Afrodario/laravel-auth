@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 //Raggruppo tutte le rotte per la sezione di amministrazione, tramite il metodo MIDDLEWARE che controlla l'accesso solo a chi è loggato
@@ -33,3 +29,9 @@ Route::middleware('auth')
 //Dopodiché devo andare a modificare la rotta home in admin in App/Providers/RouteServiceProvider perché punti, dopo il login, ad admin
 //In App/HTTP/Middleware/Authenticate.php posso reindirizzare l'utente, se non autenticato, alla pagina di login modificando la rotta
 //in redirectTo
+
+
+//Rotta da definire alla fine del file che può puntare a qualunque pagina (any) con questa sintassi specifica
+Route::get("{any?}", function() {
+    return view('guests.home');
+})->where('any', '.*');
