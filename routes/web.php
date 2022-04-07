@@ -34,7 +34,8 @@ Route::middleware('auth')
 //in redirectTo
 
 
-//Rotta da definire alla fine del file che può puntare a qualunque pagina (any) con questa sintassi specifica
+//Rotta da definire alla fine del file che può puntare a qualunque pagina che non rientri nelle rotte prima definite
+//(any) con questa sintassi specifica
 Route::get("{any?}", function() {
     return view('guests.home');
 })->where('any', '.*');
